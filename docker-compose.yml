@@ -1,0 +1,43 @@
+version: '2'
+
+volumes:
+  app-sync:
+    external: true
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: app.dockerfile
+    volumes:
+      - app-sync:/var/www
+
+  www:
+    build:
+      context: ./rust
+      dockerfile: www.dockerfile
+    volumes_from:
+      - app
+    ports:
+      - "3000:3000"
+    networks:
+      - backend
+
+  nginx:
+    build: nginx
+    volumes_from: 
+      - app
+    networks:
+      - frontend
+      - backend   
+    ports:
+      - 80:80
+      - 443:443
+    links:
+      - www:${WWW_DOMAIN}
+
+networks:
+  frontend:
+    driver: "bridge"
+  backend:
+    driver: "bridge"
