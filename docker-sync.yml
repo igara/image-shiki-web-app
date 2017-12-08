@@ -2,6 +2,7 @@ version: '2'
 options:
   verbose: true
 syncs:
-  app-sync:
-    # vagrant上では/vagrantを参照している
-    src: './'
+  rust-www-src-sync:
+    src: './rust/www/src'
+  nginx-sync:
+    src: './nginx'

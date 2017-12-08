@@ -1,23 +1,18 @@
 version: '2'
 
 volumes:
-  app-sync:
+  rust-www-src-sync:
+    external: true
+  nginx-sync:
     external: true
 
 services:
-  app:
-    build:
-      context: .
-      dockerfile: app.dockerfile
-    volumes:
-      - app-sync:/var/www
-
   www:
     build:
       context: ./rust
       dockerfile: www.dockerfile
-    volumes_from:
-      - app
+    volumes:
+      - rust-www-src-sync:/var/www/src
     ports:
       - "3000:3000"
     networks:
@@ -25,8 +20,8 @@ services:
 
   nginx:
     build: nginx
-    volumes_from: 
-      - app
+    volumes: 
+      - nginx-sync:/var/nginx
     networks:
       - frontend
       - backend   
