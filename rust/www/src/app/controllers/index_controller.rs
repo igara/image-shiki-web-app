@@ -1,11 +1,16 @@
 extern crate iron;
 extern crate router;
 extern crate serde_json;
+extern crate handlebars_iron as hbs;
 
 use app::models::Index;
 use app::helpers::IndexHelper;
 use self::iron::prelude::*;
+use self::iron::status;
 use self::router::Router;
+use self::hbs::{Template};
+use self::hbs::handlebars::to_json;
+use self::serde_json::{Map};
 
 pub struct IndexController;
 
@@ -26,6 +31,10 @@ impl IndexController {
 	    Ok(Response::with((iron::status::Ok)))
 	}
 	pub fn index(_: &mut Request) -> IronResult<Response> {
-	    Ok(Response::with((iron::status::Ok)))
+	    let mut response = Response::new();
+		let mut data = Map::new();
+		data.insert("year".to_string(), to_json(&"2015".to_owned()));
+		response.set_mut(Template::new("index_index", data)).set_mut(status::Ok);
+		Ok(response)
 	}
 }
