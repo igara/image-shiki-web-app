@@ -6,3 +6,5 @@ syncs:
     src: './rust/www/src'
   nginx-sync:
     src: './nginx'
+  nodejs-npm-sync:
+    src: './nodejs'

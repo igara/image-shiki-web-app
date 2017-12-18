@@ -5,6 +5,8 @@ volumes:
     external: true
   nginx-sync:
     external: true
+  nodejs-npm-sync:
+    external: true
 
 services:
   www:
@@ -12,11 +14,13 @@ services:
       context: ./rust
       dockerfile: www.dockerfile
     volumes:
-      - rust-www-src-sync:/var/www/src
+      - rust-www-src-sync:/rust/www/src
     ports:
       - "3000:3000"
     networks:
       - backend
+    environment:
+      - WWW_ENV=${WWW_ENV}
 
   nginx:
     build: nginx
@@ -30,6 +34,29 @@ services:
       - 443:443
     links:
       - www:${WWW_DOMAIN}
+
+  npm:
+    build:
+      context: ./nodejs
+      dockerfile: npm.dockerfile
+    volumes:
+      - nodejs-npm-sync:/nodejs
+    volumes_from:
+      - www
+
+  parcel:
+    build:
+      context: ./nodejs
+      dockerfile: parcel.dockerfile
+    ports:
+      - 1234:1234
+    networks:
+      - frontend
+      - backend   
+    volumes_from:
+      - npm
+    environment:
+      - WWW_ENV=${WWW_ENV}
 
 networks:
   frontend:

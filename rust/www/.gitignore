@@ -1,5 +1,4 @@
 target
 Cargo.lock
-www.sh
 src/assets/*
 !src/assets/.keep
