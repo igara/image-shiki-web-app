@@ -52,12 +52,12 @@ let json = {};
 read_target_build_scripts.forEach((target_build_script, index) => {
     target_build_script = target_build_script.replace(/<script src="/, '').replace(/">/, '');
     const read_target_file_script = read_target_file_scripts[index].replace(/<script src="\S*\//, '').replace(/">/, '');
-    json[target_build_script] = read_target_file_script;
+    json[target_build_script.replace(/.js/, '_js')] = read_target_file_script;
     fs.copyFileSync(`${dist_env}/${app_prefix}/${read_target_file_script}`, `${output}/${read_target_file_script}`);
 
     const target_css = read_target_file_script.replace(/.js/, '.css');
     if (fs.existsSync(`${dist_env}/${app_prefix}/${target_css}`)) {
-        json[target_build_script.replace(/.js/, '.css')] = target_css;
+        json[target_build_script.replace(/.js/, '_css')] = target_css;
         fs.copyFileSync(`${dist_env}/${app_prefix}/${read_target_file_script}`, `${output}/${target_css}`);
     }
 });
