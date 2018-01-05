@@ -2,13 +2,18 @@
 
 ### 初回起動時
 
+hostsの変更
+
+```
+# vagrantを使用せずにdockerのIPから設定する場合
+XXX.XXX.XXX.XXX local.syonet.work
+```
+
 ```
 cd image-shiki-web-app
 # 環境設定
 sh env.sh
-openssl genrsa -aes128 2048 > server.key
-openssl req -new -key server.key > server.csr
-openssl x509 -in server.csr -days 365000 -req -signkey server.key > server.crt
+# vagrantfileにコメント記載している箇所を修正
 vagrant up --provision
 ```
 
