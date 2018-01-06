@@ -34,6 +34,7 @@ services:
       DOMAINS: 'syonet.work -> http://www:3000'
       STAGE: '${WWW_ENV}'
       FORCE_RENEW: 'true'
+      RESOLVER: '127.0.0.11 ipv6=off valid=60s'
       DYNAMIC_UPSTREAM: 'true'
       WEBSOCKET: 'true'
       CLIENT_MAX_BODY_SIZE: 0
