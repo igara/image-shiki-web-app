@@ -1,6 +1,6 @@
 import {m} from '../vendor';
 import HeaderComponent from './common/header_component';
-import AaaComponent from './index/aaa';
+import InputFileComponent from './index/input_file_component';
 
 /**
  * Routing URL: //index/
@@ -25,7 +25,7 @@ export default class IndexComponent {
 	 * @param {Vnode<A, this>} vnode 
 	 */
 	oninit(vnode) {
-		this.HeaderStore.header_title_stream('Index');
+		this.HeaderStore.header_title_stream('Syonet');
 	}
 
 	/**
@@ -38,8 +38,8 @@ export default class IndexComponent {
 		HeaderStore={this.HeaderStore}
 	/>
 	<a href="/analyzeimage" oncreate={m.route.link}>sub</a>
-	<AaaComponent />
 	{this.HeaderStore.s_stream}
+	<InputFileComponent />
 </div>
 		);
 	}

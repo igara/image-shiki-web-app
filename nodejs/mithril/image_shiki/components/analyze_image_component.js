@@ -1,6 +1,5 @@
 import {m} from '../vendor';
 import HeaderComponent from './common/header_component';
-import AaaComponent from './index/aaa';
 
 /**
  * Routing URL: //analyzeimage/
@@ -39,7 +38,6 @@ export default class AnalyzeImageComponent {
 		HeaderStore={this.HeaderStore}
 	/>
 	<a href="/" oncreate={m.route.link}>index</a>
-	<AaaComponent />
 	{this.HeaderStore.s_stream}
 </div>
 		);

@@ -6,6 +6,7 @@ extern crate handlebars_iron as hbs;
 
 use std::path::Path;
 use app::controllers::IndexController;
+use app::controllers::ApiController;
 use self::router::Router;
 use self::iron::{
     Chain
@@ -21,6 +22,7 @@ pub fn all() -> Chain {
 	router.put("/users/:id", IndexController::update, "index_update");
 	router.delete("/users/:id", IndexController::delete, "index_delete");
 	router.get("/", IndexController::index, "index");
+	router.get("/api", ApiController::index, "api_index");
 
 	let mut mount = Mount::new();
 	mount.mount("/assets/", Static::new(Path::new("./src/assets")));

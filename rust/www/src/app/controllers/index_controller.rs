@@ -13,7 +13,6 @@ use self::hbs::handlebars::to_json;
 use self::serde_json::{Map, Value};
 use std::fs::{File};
 use std::io::{BufReader, Read};
-use std::str::from_utf8;
 
 pub struct IndexController;
 impl IndexController {
