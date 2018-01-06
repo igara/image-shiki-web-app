@@ -15,6 +15,8 @@ services:
       dockerfile: www.dockerfile
     volumes:
       - rust-www-src-sync:/rust/www/src
+    ports:
+      - "3000:3000"
     networks:
       - backend
     environment:
@@ -29,7 +31,7 @@ services:
       - www
     restart: always
     environment:
-      DOMAINS: "syonet.work -> http://www"
+      DOMAINS: "syonet.work -> http://www:3000"
       STAGE: ${WWW_ENV}
       DYNAMIC_UPSTREAM: "true"
     volumes:
