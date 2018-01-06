@@ -32,7 +32,7 @@ services:
     restart: always
     environment:
       DOMAINS: "syonet.work -> http://www:3000"
-      STAGE: production
+      STAGE: ${WWW_ENV}
       DYNAMIC_UPSTREAM: "true"
     volumes:
       - /data/ssl_certs:/var/lib/https-portal

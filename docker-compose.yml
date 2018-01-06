@@ -31,8 +31,8 @@ services:
       - www
     restart: always
     environment:
-      DOMAINS: "local.syonet.work -> http://www:3000"
-      STAGE: local
+      DOMAINS: "${WWW_DOMAIN} -> http://www:3000"
+      STAGE: ${WWW_ENV}
       DYNAMIC_UPSTREAM: "true"
     volumes:
       - /data/ssl_certs:/var/lib/https-portal

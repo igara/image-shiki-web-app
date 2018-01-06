@@ -15,7 +15,7 @@ def install_plugin(plugin)
     end
 
     config.vm.network :private_network, ip: "192.168.33.50"
-    config.vm.network :forwarded_port, guest: 1234, host: 1234
+    config.vm.network :forwarded_port, guest: 5555, host: 5555
     config.vm.hostname = "local.syonet.work"
     config.ssh.forward_agent = true
     config.hostsupdater.remove_on_suspend = true
