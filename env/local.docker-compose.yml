@@ -1,4 +1,4 @@
-version: "2"
+version: '2'
 
 volumes:
   rust-www-src-sync:
@@ -16,32 +16,31 @@ services:
     volumes:
       - rust-www-src-sync:/rust/www/src
     ports:
-      - "3000:3000"
+      - 3000:3000
     networks:
       - backend
     environment:
       WWW_ENV: ${WWW_ENV}
 
   https-portal:
-    image: steveltn/https-portal:1.0.0
+    image: steveltn/https-portal:1
     ports:
-      - 80:80
-      - 443:443
+      - '80:80'
+      - '443:443'
     links:
-      - www
+      - www:www
     restart: always
     environment:
-      DOMAINS: "local.syonet.work -> http://www:3000"
-      STAGE: ${WWW_ENV}
-      DYNAMIC_UPSTREAM: "true"
+      DOMAINS: 'local.syonet.work -> http://www:3000'
+      STAGE: '${WWW_ENV}'
+      DYNAMIC_UPSTREAM: 'true'
+      WEBSOCKET: 'true'
+      CLIENT_MAX_BODY_SIZE: 0
     volumes:
       - /data/ssl_certs:/var/lib/https-portal
     networks:
       - frontend
       - backend
-    extra_hosts:
-      - "syonet.work:127.0.0.1"
-      - "local.syonet.work:127.0.0.1"
 
   npm:
     build:
@@ -69,6 +68,6 @@ services:
 
 networks:
   frontend:
-    driver: "bridge"
+    driver: 'bridge'
   backend:
-    driver: "bridge"
+    driver: 'bridge'
