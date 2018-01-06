@@ -1,9 +1,13 @@
 <html>
 	<head>
 		<title> {{year}}</title>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+		<link rel="stylesheet" href="/assets/{{ static_json.app_css }}">
 	</head>
 	<body>
-	{{static_json.app_css}}
-	g
+		<script src="/assets/{{ static_json.vendor_js }}"></script>
+		<script src="/assets/{{ static_json.app_js }}"></script>
 	</body>
 </html>
