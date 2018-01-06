@@ -6,12 +6,12 @@ import AnalyzeImageComponent from '../components/analyze_image_component';
 import HeaderStore from '../stores/common/header_store';
 
 const routes = {
-    '/': new IndexComponent({
-        HeaderStore,
-    }),
-    '/analyzeimage': new AnalyzeImageComponent({
-        HeaderStore,
-    }),    
+	'/': new IndexComponent({
+		HeaderStore,
+	}),
+	'/analyzeimage': new AnalyzeImageComponent({
+		HeaderStore,
+	}),    
 }
 
 export default routes;

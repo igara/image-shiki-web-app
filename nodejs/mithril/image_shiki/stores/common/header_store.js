@@ -7,6 +7,6 @@ const header_title_stream = stream('');
 const s_stream = stream('');
 
 export default {
-    header_title_stream,
-    s_stream,
+	header_title_stream,
+	s_stream,
 };

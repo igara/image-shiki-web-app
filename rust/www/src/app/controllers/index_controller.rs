@@ -33,11 +33,11 @@ impl IndexController {
 	    Ok(Response::with((iron::status::Ok)))
 	}
 	pub fn index(_: &mut Request) -> IronResult<Response> {
-	    let mut response = Response::new();
+		let mut response = Response::new();
 
 		let mut reader = BufReader::new(File::open("./src/assets/image_shiki.json").unwrap());
 		let mut read_str = String::new();
-        reader.read_to_string(&mut read_str).unwrap();
+		reader.read_to_string(&mut read_str).unwrap();
 		let static_json: Value = serde_json::from_str(&read_str).unwrap();
 
 		let mut data = Map::new();

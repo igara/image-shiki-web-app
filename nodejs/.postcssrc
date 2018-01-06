@@ -1,7 +1,7 @@
 {
-    "modules": true,
-    "plugins": {
-        "autoprefixer": {
-        }
-    }
+	"modules": true,
+	"plugins": {
+		"autoprefixer": {
+		}
+	}
 }
