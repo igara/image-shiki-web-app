@@ -10,11 +10,13 @@ use self::router::Router;
 use self::hbs::{Template};
 use self::hbs::handlebars::to_json;
 use self::serde_json::{Map};
-use self::cpython::{PyResult, Python, PyObject};
+use self::cpython::{Python, PyDict, PyResult};
 
 pub struct ApiController;
 impl ApiController {
 	pub fn index(_: &mut Request) -> IronResult<Response> {
+		let gil = Python::acquire_gil();
+		hello(gil.python()).unwrap();
 		let mut response = Response::new();
 		let mut data = Map::new();
 		data.insert("year".to_string(), to_json(&"20".to_owned()));
@@ -22,3 +24,14 @@ impl ApiController {
 		Ok(response)
 	}
 }
+fn hello(py: Python) -> PyResult<()> {
+	let sys = py.import("sys").unwrap();
+	let version: String = sys.get(py, "version").unwrap().extract(py).unwrap();
+
+	let locals = PyDict::new(py);
+	locals.set_item(py, "os", py.import("os").unwrap()).unwrap();
+
+	println!("I'm Python {}", version);
+	Ok(())
+}
+
