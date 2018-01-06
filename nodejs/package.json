@@ -7,7 +7,7 @@
 		"clean": "rm -rf .cache && rm -rf ../rust/www/src/assets/*.js ../rust/www/src/assets/*.json ../rust/www/src/assets/*.css",
 		"dev_create_parcel_image_shiki_json": "node create_parcel_json.js mithril/image_shiki/index.html dev ../rust/www/src/assets",
 		"prod_create_parcel_image_shiki_json": "node create_parcel_json.js mithril/image_shiki/index.html prod ../rust/www/src/assets",
-		"dev_build": "npm run clean && npm run dev_parsel_build",
+		"dev_build": "npm run dev_parsel_build",
 		"prod_build": "npm run prod_parsel_build",
 		"dev_parsel_build": "npm run dev_parsel_image_shiki && npm run dev_create_parcel_image_shiki_json",
 		"prod_parsel_build": "npm run prod_parsel_image_shiki && npm run prod_create_parcel_image_shiki_json",

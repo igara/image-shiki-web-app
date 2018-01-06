@@ -23,7 +23,7 @@ services:
       WWW_ENV: ${WWW_ENV}
 
   https-portal:
-    image: steveltn/https-portal:1.0.0
+    image: steveltn/https-portal:1.0.1
     ports:
       - 80:80
       - 443:443
@@ -31,7 +31,7 @@ services:
       - www
     restart: always
     environment:
-      DOMAINS: "${WWW_DOMAIN} -> http://www:3000"
+      DOMAINS: "local.syonet.work -> http://www:3000"
       STAGE: ${WWW_ENV}
       DYNAMIC_UPSTREAM: "true"
     volumes:
@@ -39,6 +39,9 @@ services:
     networks:
       - frontend
       - backend
+    extra_hosts:
+      - "syonet.work:127.0.0.1"
+      - "local.syonet.work:127.0.0.1"
 
   npm:
     build:
