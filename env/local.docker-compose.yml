@@ -23,7 +23,7 @@ services:
       WWW_ENV: ${WWW_ENV}
 
   https-portal:
-    image: steveltn/https-portal:1.2.3
+    image: steveltn/https-portal:1.2.0
     ports:
       - 80:80
       - 443:443
