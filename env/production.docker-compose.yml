@@ -3,9 +3,9 @@ version: '2'
 volumes:
   rust-www-src-sync:
     external: true
-  nginx-sync:
-    external: true
   nodejs-npm-sync:
+    external: true
+  python-sync:
     external: true
 
 services:
@@ -15,6 +15,7 @@ services:
       dockerfile: www.dockerfile
     volumes:
       - rust-www-src-sync:/rust/www/src
+      - python-sync:/python
     ports:
       - 3000:3000
     networks:

@@ -4,7 +4,7 @@ options:
 syncs:
   rust-www-src-sync:
     src: './rust/www/src'
-  nginx-sync:
-    src: './nginx'
   nodejs-npm-sync:
     src: './nodejs'
+  python-sync:
+    src: './python'
