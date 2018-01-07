@@ -23,6 +23,8 @@ pub fn all() -> Chain {
 	router.delete("/users/:id", IndexController::delete, "index_delete");
 	router.get("/", IndexController::index, "index");
 	router.get("/api", ApiController::index, "api_index");
+	router.get("/api/upload_file/", ApiController::upload_file, "api_upload_file_get");
+	router.post("/api/upload_file/", ApiController::upload_file, "api_upload_file_post");
 
 	let mut mount = Mount::new();
 	mount.mount("/assets/", Static::new(Path::new("./src/assets")));
